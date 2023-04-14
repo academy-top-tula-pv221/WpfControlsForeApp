@@ -1,0 +1,120 @@
+﻿<Window x:Class="WpfControlsForeApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfControlsForeApp"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Window.Resources>
+        <DataTemplate x:Key="MarriedKey">
+            <StackPanel Orientation="Horizontal">
+                <CheckBox IsChecked="{Binding Path=Married}">
+                    Married
+                </CheckBox>
+            </StackPanel>
+        </DataTemplate>
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <ListBox x:Name="listBox" 
+                 SelectionMode="Extended"
+                 SelectionChanged="listBox_SelectionChanged">
+            <ListBoxItem>
+                <ListBoxItem.Content>
+                    <StackPanel Orientation="Horizontal" Height="50">
+                        <Image Source="/kaluga.png"  />
+                        <TextBlock>Калуга</TextBlock>
+                    </StackPanel>
+                </ListBoxItem.Content>
+            </ListBoxItem>
+            
+            <StackPanel Orientation="Horizontal" Height="50">
+                <Image Source="/tula.png"  />
+                <TextBlock>Тула</TextBlock>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Height="50">
+                <Image Source="/moscow.png"  />
+                <TextBlock>Москва</TextBlock>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Height="50">
+                <Image Source="/voroneg.png"  />
+                <TextBlock>Воронеж</TextBlock>
+            </StackPanel>
+            <!--<ListBoxItem>Item 1</ListBoxItem>
+            <ListBoxItem>Item 2</ListBoxItem>
+            <ListBoxItem>Item 3</ListBoxItem>-->
+            
+        </ListBox>
+        <!--<StackPanel Grid.Column="1">
+            <TextBlock x:Name="txtBlock"/>
+            <Button Grid.Column="1" Click="Button_Click">Change list</Button>
+        </StackPanel>-->
+        <ListView x:Name="listView"
+                  Grid.Column="1">
+            <ListView.Resources>
+                <DataTemplate x:Key="MarriedKey">
+                    <StackPanel Orientation="Horizontal">
+                        <CheckBox IsChecked="{Binding Path=Married}">
+                        </CheckBox>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.Resources>
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Name}">Имя юзера</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Age}">Возраст</GridViewColumn>
+                    <GridViewColumn  CellTemplate="{StaticResource MarriedKey}">Статус</GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <DataGrid x:Name="dataGrid"
+                  Grid.Row="1"
+                  AutoGenerateColumns="False"
+                  AlternatingRowBackground="Aqua">
+            <DataGrid.Columns>
+                <DataGridTextColumn Width="100" Header="Имя" Binding="{Binding Path=Name}"/>
+                <DataGridTextColumn Width="100" Header="Возраст" Binding="{Binding Path=Age}"/>
+                <DataGridCheckBoxColumn Header="Статус" Binding="{Binding Path=Married}"/>
+            </DataGrid.Columns>
+            <DataGrid.RowDetailsTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Path=Salary}"/>
+                        <TextBlock Text=" Руб."/>
+                    </StackPanel>
+                </DataTemplate>
+            </DataGrid.RowDetailsTemplate>
+        </DataGrid>
+        <!--<StackPanel Grid.Column="0"
+                    Grid.Row="1">
+            <ComboBox x:Name="cmbBox"
+                      IsEditable="True"
+                      StaysOpenOnEdit="True">
+
+            </ComboBox>
+        </StackPanel>-->
+        <TreeView Grid.Column="1"
+                    Grid.Row="1"
+                  FontSize="20">
+            <TreeViewItem Header="Item 1"/>
+            <TreeViewItem Header="Item 2" IsExpanded="True">
+                <TreeViewItem Header="Item 2.1"/>
+                <TreeViewItem Header="Item 2.2">
+                    <TreeViewItem Header="2.2.1"/>
+                    <TreeViewItem Header="2.2.2"/>
+                    <TreeViewItem Header="2.2.3"/>
+                </TreeViewItem>
+                <TreeViewItem Header="Item 2.3"/>
+            </TreeViewItem>
+        </TreeView>
+        
+    </Grid>
+</Window>
